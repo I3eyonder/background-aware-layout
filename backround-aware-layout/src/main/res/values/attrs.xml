@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="GlobalAttr">
+        <attr name="layout_backgroundAware" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="BackgroundAwareConstraintLayout_Layout">
+        <attr name="layout_backgroundAware" />
+    </declare-styleable>
+    <declare-styleable name="BackgroundAwareMotionLayout_Layout">
+        <attr name="layout_backgroundAware" />
+    </declare-styleable>
+    <declare-styleable name="BackgroundAwareFrameLayout_Layout">
+        <attr name="layout_backgroundAware" />
+    </declare-styleable>
+    <declare-styleable name="BackgroundAwareLinearLayout_Layout">
+        <attr name="layout_backgroundAware" />
+    </declare-styleable>
+    <declare-styleable name="BackgroundAwareRelativeLayout_Layout">
+        <attr name="layout_backgroundAware" />
+    </declare-styleable>
+    <declare-styleable name="BackgroundAwareGridLayout_Layout">
+        <attr name="layout_backgroundAware" />
+    </declare-styleable>
+    <declare-styleable name="BackgroundAwareCoordinatorLayout_Layout">
+        <attr name="layout_backgroundAware" />
+    </declare-styleable>
+    <declare-styleable name="BackgroundAwareAppBarLayout_Layout">
+        <attr name="layout_backgroundAware" />
+    </declare-styleable>
+    <declare-styleable name="BackgroundAwareViewGroup_Layout">
+        <attr name="layout_backgroundAware" />
+    </declare-styleable>
+</resources>

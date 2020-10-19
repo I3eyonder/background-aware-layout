@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:bottom="@dimen/item_inset"
+        android:left="@dimen/item_inset"
+        android:right="@dimen/item_inset"
+        android:top="@dimen/item_inset">
+        <shape android:shape="rectangle">
+            <stroke
+                android:width="@dimen/item_owner_stroke_width"
+                android:color="@color/white" />
+            <corners
+                android:bottomLeftRadius="@dimen/item_corner_radius"
+                android:topLeftRadius="@dimen/item_corner_radius"
+                android:topRightRadius="@dimen/item_corner_radius" />
+        </shape>
+    </item>
+</layer-list>

@@ -1,0 +1,3 @@
+include ':backround-aware-layout'
+include ':app'
+rootProject.name = "Background Aware Constraint Layout Demo"
