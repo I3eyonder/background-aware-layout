@@ -3,17 +3,15 @@ package com.hieupt.view
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
-import android.graphics.PorterDuff
-import android.graphics.PorterDuffXfermode
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.use
 import androidx.core.view.children
 import com.google.android.material.appbar.AppBarLayout
 import com.hieupt.R
+import com.hieupt.view.graphic.IClipPathCreator
 
 /**
  * Created by HieuPT on 10/19/2020.
@@ -22,13 +20,17 @@ class BackgroundAwareAppBarLayout @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : AppBarLayout(context, attrs, defStyleAttr) {
+) : AppBarLayout(context, attrs, defStyleAttr), IBackgroundAwareLayout {
 
-    private val eraser by lazy { Paint() }
+    override val pathCreatorMap = hashMapOf<Int, IClipPathCreator>()
+
+    override val eraser = Paint()
 
     init {
         setupEraser()
     }
+
+    override fun getView(): View = this
 
     override fun generateLayoutParams(attrs: AttributeSet?): AppBarLayout.LayoutParams {
         return LayoutParams(context, attrs)
@@ -47,29 +49,13 @@ class BackgroundAwareAppBarLayout @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        children.filter {
-            (it.layoutParams as? LayoutParams)?.isBackgroundAware ?: false
-        }.forEach {
-            canvas?.drawRect(
-                it.left.toFloat(), it.top.toFloat(),
-                it.right.toFloat(), it.bottom.toFloat(),
-                eraser
-            )
-        }
+        eraseChildren(canvas, children.toList())
     }
 
-    private fun setupEraser() {
-        eraser.apply {
-            color = ContextCompat.getColor(context, android.R.color.transparent)
-            xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
-            isAntiAlias = true
-        }
-        setLayerType(View.LAYER_TYPE_HARDWARE, null)
-    }
+    class LayoutParams : AppBarLayout.LayoutParams,
+        IBackgroundAwareLayout.IBackgroundAwareLayoutParams {
 
-    class LayoutParams : AppBarLayout.LayoutParams {
-
-        var isBackgroundAware = false
+        override var isBackgroundAware: Boolean = false
 
         constructor(c: Context?, attrs: AttributeSet?) : super(c, attrs) {
             c?.obtainStyledAttributes(attrs, R.styleable.BackgroundAwareAppBarLayout_Layout)?.use {

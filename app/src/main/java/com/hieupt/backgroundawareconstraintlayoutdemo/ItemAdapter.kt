@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.hieupt.view.BackgroundAwareConstraintLayout
+import com.hieupt.view.graphic.RoundRectClipPathCreator
 import kotlin.random.Random
 
 /**
@@ -54,6 +56,11 @@ class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
             override fun bind() {
                 tvContent.text = "This message from owner $adapterPosition"
+                val radius = tvContent.context.resources.getDimension(R.dimen.item_corner_radius)
+                (itemView as BackgroundAwareConstraintLayout).setClipPathCreator(
+                    tvContent.id,
+                    RoundRectClipPathCreator(radius, radius, 0f, radius)
+                )
             }
         }
 
