@@ -1,33 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="GlobalAttr">
-        <attr name="layout_backgroundAware" format="boolean" />
+    <declare-styleable name="BackgroundAwareGlobalAttr">
+        <attr name="layout_backgroundAware" format="reference|color" />
+        <attr name="layout_backgroundAwareTint" format="color" />
+        <attr name="layout_backgroundAwareMode" format="enum">
+            <enum name="tint" value="0" />
+            <enum name="clear" value="1" />
+        </attr>
+        <attr name="layout_backgroundAwareScaleType" format="enum">
+            <enum name="center" value="0" />
+            <enum name="fitCenter" value="1" />
+            <enum name="fitXY" value="2" />
+        </attr>
     </declare-styleable>
     <declare-styleable name="BackgroundAwareConstraintLayout_Layout">
         <attr name="layout_backgroundAware" />
+        <attr name="layout_backgroundAwareTint" />
+        <attr name="layout_backgroundAwareMode" />
+        <attr name="layout_backgroundAwareScaleType" />
     </declare-styleable>
     <declare-styleable name="BackgroundAwareMotionLayout_Layout">
         <attr name="layout_backgroundAware" />
+        <attr name="layout_backgroundAwareTint" />
+        <attr name="layout_backgroundAwareMode" />
+        <attr name="layout_backgroundAwareScaleType" />
     </declare-styleable>
     <declare-styleable name="BackgroundAwareFrameLayout_Layout">
         <attr name="layout_backgroundAware" />
+        <attr name="layout_backgroundAwareTint" />
+        <attr name="layout_backgroundAwareMode" />
+        <attr name="layout_backgroundAwareScaleType" />
     </declare-styleable>
     <declare-styleable name="BackgroundAwareLinearLayout_Layout">
         <attr name="layout_backgroundAware" />
+        <attr name="layout_backgroundAwareTint" />
+        <attr name="layout_backgroundAwareMode" />
+        <attr name="layout_backgroundAwareScaleType" />
     </declare-styleable>
     <declare-styleable name="BackgroundAwareRelativeLayout_Layout">
         <attr name="layout_backgroundAware" />
+        <attr name="layout_backgroundAwareTint" />
+        <attr name="layout_backgroundAwareMode" />
+        <attr name="layout_backgroundAwareScaleType" />
     </declare-styleable>
     <declare-styleable name="BackgroundAwareGridLayout_Layout">
         <attr name="layout_backgroundAware" />
+        <attr name="layout_backgroundAwareTint" />
+        <attr name="layout_backgroundAwareMode" />
+        <attr name="layout_backgroundAwareScaleType" />
     </declare-styleable>
     <declare-styleable name="BackgroundAwareCoordinatorLayout_Layout">
         <attr name="layout_backgroundAware" />
+        <attr name="layout_backgroundAwareTint" />
+        <attr name="layout_backgroundAwareMode" />
+        <attr name="layout_backgroundAwareScaleType" />
     </declare-styleable>
     <declare-styleable name="BackgroundAwareAppBarLayout_Layout">
         <attr name="layout_backgroundAware" />
+        <attr name="layout_backgroundAwareTint" />
+        <attr name="layout_backgroundAwareMode" />
+        <attr name="layout_backgroundAwareScaleType" />
     </declare-styleable>
     <declare-styleable name="BackgroundAwareViewGroup_Layout">
         <attr name="layout_backgroundAware" />
+        <attr name="layout_backgroundAwareTint" />
+        <attr name="layout_backgroundAwareMode" />
+        <attr name="layout_backgroundAwareScaleType" />
     </declare-styleable>
 </resources>

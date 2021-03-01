@@ -3,9 +3,14 @@ package com.hieupt.backgroundawareconstraintlayoutdemo
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.hieupt.view.BackgroundAwareConstraintLayout
+import com.hieupt.view.BackgroundAwareMode
+import com.hieupt.view.extensions.backgroundAware
+import com.hieupt.view.extensions.backgroundAwareMode
+import com.hieupt.view.extensions.backgroundAwarePathCreator
 import com.hieupt.view.graphic.RoundRectClipPathCreator
 import kotlin.random.Random
 
@@ -53,14 +58,28 @@ class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
         class OwnerViewHolder(itemView: View) : ItemViewHolder(itemView) {
 
             private val tvContent: TextView = itemView.findViewById(R.id.tvContent)
+            private val ivIcon: ImageView = itemView.findViewById(R.id.ivIcon)
 
             override fun bind() {
                 tvContent.text = "This message from owner $adapterPosition"
                 val radius = tvContent.context.resources.getDimension(R.dimen.item_corner_radius)
-                (itemView as BackgroundAwareConstraintLayout).setClipPathCreator(
-                    tvContent.id,
-                    RoundRectClipPathCreator(radius, radius, 0f, radius)
-                )
+                tvContent.backgroundAwarePathCreator =
+                    RoundRectClipPathCreator(0f, radius, 0f, radius)
+                ivIcon.setOnClickListener {
+                    if (it.isActivated) {
+                        it.backgroundAware = ContextCompat.getDrawable(
+                            itemView.context,
+                            R.drawable.ic_thumb_up_black_24dp
+                        )
+                    } else {
+                        it.backgroundAware =
+                            ContextCompat.getDrawable(
+                                itemView.context,
+                                R.drawable.ic_thumb_down_alt_black_24dp
+                            )
+                    }
+                    it.isActivated = !it.isActivated
+                }
             }
         }
 
@@ -70,6 +89,14 @@ class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
             override fun bind() {
                 tvContent.text = "This message from other $adapterPosition"
+                tvContent.setOnClickListener {
+                    val newMode = if (it.backgroundAwareMode == BackgroundAwareMode.TINT) {
+                        BackgroundAwareMode.CLEAR
+                    } else {
+                        BackgroundAwareMode.TINT
+                    }
+                    it.backgroundAwareMode = newMode
+                }
             }
         }
     }

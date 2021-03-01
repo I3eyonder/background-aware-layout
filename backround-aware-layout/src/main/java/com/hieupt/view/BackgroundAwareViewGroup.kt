@@ -1,14 +1,17 @@
 package com.hieupt.view
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Paint
+import android.content.res.ColorStateList
+import android.graphics.*
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.res.use
 import androidx.core.view.children
 import com.hieupt.R
+import com.hieupt.view.extensions.obtainStyledAttributes
+import com.hieupt.view.extensions.onDrawAwareBackground
+import com.hieupt.view.extensions.onMeasureAwareBackground
 import com.hieupt.view.graphic.IClipPathCreator
 
 /**
@@ -20,12 +23,27 @@ abstract class BackgroundAwareViewGroup @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : ViewGroup(context, attrs, defStyleAttr), IBackgroundAwareLayout {
 
-    override val pathCreatorMap = hashMapOf<Int, IClipPathCreator>()
+    override val clipPathEraser: Paint = Paint().apply {
+        color = Color.TRANSPARENT
+        xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
+        isAntiAlias = true
+    }
 
-    override val eraser: Paint = Paint()
+    override val backgroundEraser: Paint = Paint().apply {
+        xfermode = PorterDuffXfermode(PorterDuff.Mode.DST_OUT)
+        isAntiAlias = true
+    }
+
+    override val tintPaint: Paint = Paint().apply {
+        isAntiAlias = true
+    }
 
     init {
-        setupEraser()
+        initLayerType()
+    }
+
+    private fun initLayerType() {
+        setLayerType(View.LAYER_TYPE_HARDWARE, null)
     }
 
     override fun generateLayoutParams(attrs: AttributeSet?): ViewGroup.LayoutParams {
@@ -39,23 +57,28 @@ abstract class BackgroundAwareViewGroup @JvmOverloads constructor(
         )
     }
 
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        onMeasureAwareBackground(children.toList())
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+    }
+
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        eraseChildren(canvas, children.toList())
+        onDrawAwareBackground(canvas, children.toList())
     }
 
     class LayoutParams : ViewGroup.LayoutParams,
         IBackgroundAwareLayout.IBackgroundAwareLayoutParams {
 
-        override var isBackgroundAware = false
+        override var backgroundAwareMode: BackgroundAwareMode = BackgroundAwareMode.TINT
+        override var backgroundAware: Drawable? = null
+        override var backgroundAwareTint: ColorStateList? = null
+        override var backgroundAwarePathCreator: IClipPathCreator? = null
+        override var backgroundAwareScaleType: BackgroundAwareScaleType =
+            BackgroundAwareScaleType.CENTER
 
-        constructor(c: Context?, attrs: AttributeSet?) : super(c, attrs) {
-            c?.obtainStyledAttributes(attrs, R.styleable.BackgroundAwareViewGroup_Layout)?.use {
-                isBackgroundAware = it.getBoolean(
-                    R.styleable.BackgroundAwareViewGroup_Layout_layout_backgroundAware,
-                    false
-                )
-            }
+        constructor(c: Context, attrs: AttributeSet?) : super(c, attrs) {
+            obtainStyledAttributes(c, attrs, R.styleable.BackgroundAwareViewGroup_Layout)
         }
 
         constructor(width: Int, height: Int) : super(width, height)

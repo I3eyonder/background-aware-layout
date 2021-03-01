@@ -14,8 +14,21 @@
         android:padding="5dp"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_backgroundAware="true"
+        app:layout_backgroundAware="@drawable/bg_item_other"
+        app:layout_backgroundAwareMode="clear"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@tools:sample/lorem" />
+
+    <ImageView
+        android:id="@+id/ivIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:layout_backgroundAware="@drawable/ic_thumb_up_black_24dp"
+        app:layout_backgroundAwareMode="clear"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvContent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@android:color/transparent" />
 </com.hieupt.view.BackgroundAwareConstraintLayout>
