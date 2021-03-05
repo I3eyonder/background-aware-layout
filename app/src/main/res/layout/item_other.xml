@@ -15,6 +15,6 @@
         android:padding="5dp"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_backgroundAware="@drawable/bg_item_other"
+        app:layout_backgroundAware="@drawable/bg_half_corner"
         tools:text="@tools:sample/lorem" />
 </com.hieupt.view.BackgroundAwareFrameLayout>

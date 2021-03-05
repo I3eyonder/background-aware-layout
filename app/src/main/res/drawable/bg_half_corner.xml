@@ -5,8 +5,7 @@
             <solid android:color="@color/light_gray" />
             <corners
                 android:bottomRightRadius="@dimen/item_corner_radius"
-                android:topLeftRadius="@dimen/item_corner_radius"
-                android:topRightRadius="@dimen/item_corner_radius" />
+                android:topLeftRadius="@dimen/item_corner_radius" />
         </shape>
     </item>
 </layer-list>

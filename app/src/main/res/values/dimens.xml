@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="item_corner_radius">20dp</dimen>
-    <dimen name="item_owner_stroke_width">10dp</dimen>
-    <dimen name="item_inset">-10dp</dimen>
+    <dimen name="frame_size">250dp</dimen>
 </resources>

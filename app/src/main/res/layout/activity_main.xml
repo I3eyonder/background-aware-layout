@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,10 +11,141 @@
         android:layout_height="match_parent"
         android:src="@drawable/bg_gradient" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_owner" />
+        android:fillViewport="true">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.hieupt.view.BackgroundAwareLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/frame_size"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/contentView1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="This is a view without background shape or clip path. So this view cannot be to tint!"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/btnClear1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/btnClear1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/clear_off"
+                    app:layout_constraintBottom_toBottomOf="@+id/contentView1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/contentView1" />
+            </com.hieupt.view.BackgroundAwareLinearLayout>
+
+            <com.hieupt.view.BackgroundAwareConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/frame_size"
+                android:background="@color/white">
+
+                <Button
+                    android:id="@+id/btnTint2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:text="@string/tint_off"
+                    app:layout_constraintBottom_toBottomOf="@+id/contentView2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/contentView2" />
+
+                <TextView
+                    android:id="@+id/contentView2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="This is a view with background shape"
+                    android:textSize="16sp"
+                    app:layout_backgroundAware="@drawable/bg_half_corner"
+                    app:layout_constraintEnd_toStartOf="@+id/btnClear2"
+                    app:layout_constraintStart_toEndOf="@+id/btnTint2" />
+
+                <Button
+                    android:id="@+id/btnClear2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:text="@string/clear_off"
+                    app:layout_constraintBottom_toBottomOf="@+id/contentView2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/contentView2" />
+            </com.hieupt.view.BackgroundAwareConstraintLayout>
+
+            <com.hieupt.view.BackgroundAwareRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/frame_size"
+                android:background="@color/white">
+
+                <Button
+                    android:id="@+id/btnTint3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:text="@string/tint_off" />
+
+                <TextView
+                    android:id="@+id/contentView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_toStartOf="@+id/btnClear3"
+                    android:layout_toEndOf="@+id/btnTint3"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="This is a view with custom clip path"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/btnClear3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:text="@string/clear_off" />
+            </com.hieupt.view.BackgroundAwareRelativeLayout>
+
+            <com.hieupt.view.BackgroundAwareFrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/frame_size"
+                android:background="@color/white">
+
+                <Button
+                    android:id="@+id/btnTint4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_gravity="start"
+                    android:text="@string/tint_off" />
+
+                <ImageView
+                    android:id="@+id/contentView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    app:layout_backgroundAware="@drawable/ic_thumb_up_black_24dp" />
+
+                <Button
+                    android:id="@+id/btnClear4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="end"
+                    android:text="@string/clear_off" />
+            </com.hieupt.view.BackgroundAwareFrameLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

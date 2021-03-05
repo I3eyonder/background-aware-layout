@@ -14,14 +14,14 @@
         android:padding="5dp"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_backgroundAware="@drawable/bg_item_other"
+        app:layout_backgroundAware="@drawable/bg_half_corner"
         app:layout_backgroundAwareMode="clear"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@tools:sample/lorem" />
 
     <ImageView
-        android:id="@+id/ivIcon"
+        android:id="@+id/contentView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"

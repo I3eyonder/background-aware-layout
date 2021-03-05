@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Background Aware Constraint Layout Demo</string>
+    <string name="clear_off">Clear\nOff</string>
+    <string name="clear_on">Clear\nOn</string>
+    <string name="tint_off">Tint\nOff</string>
+    <string name="tint_on">Tint\nOn</string>
 </resources>
