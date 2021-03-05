@@ -1,0 +1,33 @@
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+def bintrayUserEnvKey = 'BINTRAY_USER'
+def bintrayApiEnvKey = 'BINTRAY_KEY'
+
+def groupName = 'com.dev.hieupt'
+def versionName = version_name
+def pkgRepoName = 'BackgroundAwareLayout'
+def pkgName = 'background-aware-layout'
+def pkgDesc = 'Android custom view background aware layout'
+def pkgLicenses = ['Apache-2.0']
+def gitUrl = 'https://github.com/hieupham1993/background-aware-layout'
+
+group = groupName
+version = versionName
+
+bintray {
+    user = System.getenv(bintrayUserEnvKey)
+    key = System.getenv(bintrayApiEnvKey)
+    configurations = ['archives']
+    pkg {
+        repo = pkgRepoName
+        name = pkgName
+        desc = pkgDesc
+        licenses = pkgLicenses
+        vcsUrl = gitUrl
+        version {
+            name = versionName
+            released = new Date()
+        }
+    }
+}
