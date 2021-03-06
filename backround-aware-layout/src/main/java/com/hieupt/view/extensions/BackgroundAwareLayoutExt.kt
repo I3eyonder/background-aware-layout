@@ -62,6 +62,8 @@ internal fun IBackgroundAwareLayout.onDrawAwareBackground(
                         BackgroundAwareScaleType.CENTER -> {
                             background.intrinsicWidth
                         }
+                        BackgroundAwareScaleType.FIT_START,
+                        BackgroundAwareScaleType.FIT_END,
                         BackgroundAwareScaleType.FIT_CENTER -> {
                             val bgHeight = if (background.intrinsicHeight > 0) {
                                 background.intrinsicHeight
@@ -86,6 +88,8 @@ internal fun IBackgroundAwareLayout.onDrawAwareBackground(
                         BackgroundAwareScaleType.CENTER -> {
                             background.intrinsicHeight
                         }
+                        BackgroundAwareScaleType.FIT_START,
+                        BackgroundAwareScaleType.FIT_END,
                         BackgroundAwareScaleType.FIT_CENTER -> {
                             val intrinsicWidth = if (background.intrinsicWidth > 0) {
                                 background.intrinsicWidth
@@ -106,15 +110,28 @@ internal fun IBackgroundAwareLayout.onDrawAwareBackground(
                     rectF.height().toInt()
                 }
                 if (width > 0 && height > 0) {
-                    canvas?.drawBitmap(
-                        background.toBitmap(
-                            width = width,
-                            height = height
-                        ),
-                        rectF.centerX() - width / 2,
-                        rectF.centerY() - height / 2,
-                        pickPaint(backgroundEraser)
-                    )
+                    val bitmap = background.toBitmap(width, height)
+                    when (lp.backgroundAwareScaleType) {
+                        BackgroundAwareScaleType.FIT_START -> {
+                            canvas?.drawBitmap(bitmap, 0f, 0f, pickPaint(backgroundEraser))
+                        }
+                        BackgroundAwareScaleType.FIT_END -> {
+                            canvas?.drawBitmap(
+                                bitmap,
+                                rectF.width() - width,
+                                0f,
+                                pickPaint(backgroundEraser)
+                            )
+                        }
+                        else -> {
+                            canvas?.drawBitmap(
+                                bitmap,
+                                rectF.centerX() - width / 2,
+                                rectF.centerY() - height / 2,
+                                pickPaint(backgroundEraser)
+                            )
+                        }
+                    }
                 }
             } ?: kotlin.run {
                 if (lp.backgroundAwareMode == BackgroundAwareMode.CLEAR) {

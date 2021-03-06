@@ -30,13 +30,13 @@ internal fun IBackgroundAwareLayout.IBackgroundAwareLayoutParams.obtainStyledAtt
         } else {
             BackgroundAwareMode.TINT
         }
-        backgroundAwareScaleType = when (it.getInt(
-            R.styleable.BackgroundAwareGlobalAttr_layout_backgroundAwareScaleType,
-            -1
-        )) {
-            BackgroundAwareScaleType.FIT_CENTER.ordinal -> BackgroundAwareScaleType.FIT_CENTER
-            BackgroundAwareScaleType.FIT_XY.ordinal -> BackgroundAwareScaleType.FIT_XY
-            else -> BackgroundAwareScaleType.CENTER
-        }
+        val scaleTypeOrdinal =
+            it.getInt(R.styleable.BackgroundAwareGlobalAttr_layout_backgroundAwareScaleType, -1)
+        backgroundAwareScaleType =
+            if (scaleTypeOrdinal in BackgroundAwareScaleType.values().indices) {
+                BackgroundAwareScaleType.values()[scaleTypeOrdinal]
+            } else {
+                BackgroundAwareScaleType.CENTER
+            }
     }
 }

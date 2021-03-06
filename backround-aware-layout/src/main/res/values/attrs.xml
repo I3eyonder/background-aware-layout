@@ -11,6 +11,8 @@
             <enum name="center" value="0" />
             <enum name="fitCenter" value="1" />
             <enum name="fitXY" value="2" />
+            <enum name="fitStart" value="3" />
+            <enum name="fitEnd" value="4" />
         </attr>
     </declare-styleable>
     <declare-styleable name="BackgroundAwareConstraintLayout_Layout">

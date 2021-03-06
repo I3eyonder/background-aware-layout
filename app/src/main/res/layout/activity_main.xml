@@ -34,19 +34,13 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="This is a view without background shape or clip path. So this view cannot be to tint!"
-                    android:textSize="16sp"
-                    app:layout_constraintEnd_toStartOf="@+id/btnClear1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textSize="16sp" />
 
                 <Button
                     android:id="@+id/btnClear1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="@string/clear_off"
-                    app:layout_constraintBottom_toBottomOf="@+id/contentView1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/contentView1" />
+                    android:text="@string/clear_off" />
             </com.hieupt.view.BackgroundAwareLinearLayout>
 
             <com.hieupt.view.BackgroundAwareConstraintLayout
@@ -68,7 +62,6 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
-                    android:layout_weight="1"
                     android:gravity="center"
                     android:text="This is a view with background shape"
                     android:textSize="16sp"
