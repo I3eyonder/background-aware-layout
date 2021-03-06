@@ -4,7 +4,7 @@
 
 ### Gradle:
 ```gradle
-implementation 'com.dev.hieupt:backround-aware-layout:1.0'
+implementation 'com.dev.hieupt:backround-aware-layout:1.1'
 ```
 
 ## Usage
@@ -23,7 +23,7 @@ implementation 'com.dev.hieupt:backround-aware-layout:1.0'
         android:layout_margin="5dp"
         android:gravity="center"
         android:textSize="16sp"
-        app:layout_backgroundAwareScaleType="center|fitCener|fitXY"
+        app:layout_backgroundAwareScaleType="center|fitCener|fitXY|fitStart|fitEnd"
         app:layout_backgroundAwareMode="clear|tint"
         app:layout_backgroundAwareTint="@color"
         app:layout_backgroundAware="@drawable" />
@@ -58,7 +58,7 @@ For kotlin, using view extensions
 contentView.backgroundAware = Drawable
 contentView.backgroundAwareTint = ColorStateList
 contentView.backgroundAwareMode = BackgroundAwareMode.CLEAR|BackgroundAwareMode.TINT
-contentView.backgroundAwareScaleType = BackgroundAwareScaleType.CENTER|BackgroundAwareScaleType.FIT_CENTER|BackgroundAwareScaleType.FIT_XY
+contentView.backgroundAwareScaleType = BackgroundAwareScaleType.CENTER|BackgroundAwareScaleType.FIT_CENTER|BackgroundAwareScaleType.FIT_XY|BackgroundAwareScaleType.FIT_START|BackgroundAwareScaleType.FIT_END
 contentView.backgroundAwarePathCreator = IClipPathCreator
 ```
 
@@ -67,7 +67,7 @@ For java
 ViewExtKt.setBackgroundAware(contentView, Drawable);
 ViewExtKt.setBackgroundAwareTint(contentView, ColorStateList);
 ViewExtKt.setBackgroundAwareMode(contentView, BackgroundAwareMode.CLEAR|BackgroundAwareMode.TINT);
-ViewExtKt.setBackgroundAwareScaleType(contentView, BackgroundAwareScaleType.CENTER|BackgroundAwareScaleType.FIT_CENTER|BackgroundAwareScaleType.FIT_XY);
+ViewExtKt.setBackgroundAwareScaleType(contentView, BackgroundAwareScaleType.CENTER|BackgroundAwareScaleType.FIT_CENTER|BackgroundAwareScaleType.FIT_XY|BackgroundAwareScaleType.FIT_START|BackgroundAwareScaleType.FIT_END);
 ViewExtKt.setBackgroundAwarePathCreator(contentView, IClipPathCreator);
 ```
 
